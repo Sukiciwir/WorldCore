@@ -1,0 +1,56 @@
+# WorldCore Messages
+# MiniMessage format supported.
+
+prefix: "<dark_gray>[<gradient:#6a11cb:#2575fc>WorldCore</gradient><dark_gray>]</dark_gray> "
+
+# ─── General ──────────────────────────────────────────────────────
+no-permission: "<red>You don't have permission to do that."
+unknown-command: "<red>Unknown sub-command. Use <yellow>/worldcore help</yellow>."
+player-only: "<red>This command can only be used by players."
+reload-success: "<green>WorldCore configuration reloaded successfully."
+
+# ─── World State ──────────────────────────────────────────────────
+state-changed: "<aqua>🌍 World State changed to: <white>{state}"
+state-current: "<aqua>Current World State: <white>{state}"
+state-set: "<green>World state manually set to: <white>{state}"
+
+# ─── Expedition ───────────────────────────────────────────────────
+expedition-started: "<aqua>⛵ Expedition <white>{expedition} <aqua>started! Returns in <white>{duration}<aqua>."
+expedition-claimed: "<green>✅ Expedition <white>{expedition} <green>completed! Rewards delivered."
+expedition-no-active: "<red>You have no active expeditions to claim."
+expedition-not-ready: "<yellow>⏱ Your expedition <white>{expedition} <yellow>is not ready yet. Returns in <white>{remaining}<yellow>."
+expedition-no-slots: "<red>You have no free expedition slots. Claim or upgrade."
+expedition-not-found: "<red>That expedition does not exist or is not available."
+expedition-not-available: "<red>That expedition is not available in the current world state."
+expedition-cost-insufficient-money: "<red>You need <yellow>${amount} <red>to start this expedition."
+expedition-cost-insufficient-items: "<red>You need <yellow>{item} x{amount} <red>to start this expedition."
+expedition-cost-removed: "<yellow>Expedition cost deducted: <white>{cost}"
+expedition-already-active: "<red>This expedition is already active."
+expedition-list-header: "<aqua>⛵ Your Expeditions:"
+expedition-list-active: "  <yellow>● <white>{expedition} <gray>— <aqua>{remaining}"
+expedition-list-claimable: "  <green>✓ <white>{expedition} <gray>— <green>Ready to claim!"
+expedition-list-empty: "  <gray>No active expeditions."
+
+# ─── Achievement ──────────────────────────────────────────────────
+achievement-unlocked: "<gold>🏆 Achievement Unlocked: <yellow>{achievement}"
+achievement-progress: "<gray>Progress: <white>{current}/{target}"
+achievement-already-unlocked: "<yellow>You have already unlocked this achievement."
+achievement-list-header: "<gold>🏆 Achievements ({unlocked}/{total})"
+
+# ─── Title ────────────────────────────────────────────────────────
+title-awarded: "<light_purple>👑 Title Awarded: <white>{title}"
+title-set: "<green>Active title set to: <white>{title}"
+title-cleared: "<gray>Active title cleared."
+title-not-owned: "<red>You don't own that title."
+title-not-found: "<red>That title does not exist."
+
+# ─── GUI ──────────────────────────────────────────────────────────
+gui-not-found: "<red>GUI not available. Contact an administrator."
+
+# ─── Economy Modifiers ────────────────────────────────────────────
+modifiers-applied: "<green>Economy modifiers applied for state: <white>{state}"
+modifiers-cleared: "<gray>Economy modifiers cleared."
+
+# ─── Broadcast ────────────────────────────────────────────────────
+broadcast-achievement: "{prefix}<gold>🏆 <white>{player} <gray>unlocked <yellow>{achievement}<gray>!"
+broadcast-expedition-complete: "{prefix}<aqua>⛵ <white>{player} <gray>completed <aqua>{expedition}<gray>!"

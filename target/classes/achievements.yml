@@ -1,0 +1,466 @@
+# WorldCore Achievements
+# ──────────────────────────────────────────────────────────────────
+# Each achievement has:
+#   id:           Unique key (lowercase, no spaces)
+#   name:         Display name (MiniMessage supported)
+#   description:  Description shown in GUI
+#   category:     COMBAT / ECONOMY / CRATES / AUCTION / FISHING /
+#                 QUEST / PLAYTIME / SHOPS / EXPEDITION / HALL_OF_FAME /
+#                 DISCOVERY / TOWNY / SEASONAL / EVENT / CUSTOM
+#   type:         INCREMENTAL (progress) or ONE_SHOT (instant unlock)
+#   target:       Required progress value (for INCREMENTAL)
+#   world-states: State IDs required (empty = any state)
+#   title-reward: Title ID to award on unlock (optional)
+#   icon:         Item material for GUI display
+# ──────────────────────────────────────────────────────────────────
+
+achievements:
+
+  # ─── COMBAT ──────────────────────────────────────────────────────
+  - id: zombie_slayer_1
+    name: "<green>⚔ Zombie Slayer I"
+    description: "Kill 100 zombies."
+    category: COMBAT
+    type: INCREMENTAL
+    target: 100
+    icon: ZOMBIE_HEAD
+    world-states: []
+
+  - id: zombie_slayer_2
+    name: "<yellow>⚔ Zombie Slayer II"
+    description: "Kill 1,000 zombies."
+    category: COMBAT
+    type: INCREMENTAL
+    target: 1000
+    icon: ZOMBIE_HEAD
+    world-states: []
+
+  - id: skeleton_archer_1
+    name: "<white>🏹 Skeleton Archer I"
+    description: "Kill 100 skeletons."
+    category: COMBAT
+    type: INCREMENTAL
+    target: 100
+    icon: SKELETON_SKULL
+    world-states: []
+
+  - id: creeper_bane
+    name: "<dark_green>💥 Creeper Bane"
+    description: "Kill 500 creepers."
+    category: COMBAT
+    type: INCREMENTAL
+    target: 500
+    icon: CREEPER_HEAD
+    world-states: []
+
+  - id: enderman_hunter
+    name: "<dark_purple>👁 Enderman Hunter"
+    description: "Kill 200 endermen."
+    category: COMBAT
+    type: INCREMENTAL
+    target: 200
+    icon: ENDER_EYE
+    world-states: []
+
+  # ─── ECONOMY ─────────────────────────────────────────────────────
+  - id: economy_10k
+    name: "<gold>💰 Small Fortune"
+    description: "Reach a balance of $10,000."
+    category: ECONOMY
+    type: ONE_SHOT
+    target: 10000
+    icon: GOLD_NUGGET
+    world-states: []
+
+  - id: economy_100k
+    name: "<gold>💰 Growing Wealth"
+    description: "Reach a balance of $100,000."
+    category: ECONOMY
+    type: ONE_SHOT
+    target: 100000
+    icon: GOLD_INGOT
+    world-states: []
+    title-reward: merchant
+
+  - id: economy_1m
+    name: "<yellow>💎 Millionaire"
+    description: "Reach a balance of $1,000,000."
+    category: ECONOMY
+    type: ONE_SHOT
+    target: 1000000
+    icon: DIAMOND
+    world-states: []
+    title-reward: merchant_king
+
+  - id: economy_10m
+    name: "<aqua>👑 Merchant King"
+    description: "Reach a balance of $10,000,000."
+    category: ECONOMY
+    type: ONE_SHOT
+    target: 10000000
+    icon: NETHERITE_INGOT
+    world-states: []
+    title-reward: legend
+
+  # ─── CRATES (CrazyCrates) ────────────────────────────────────────
+  - id: crate_opener_1
+    name: "<light_purple>📦 Crate Opener I"
+    description: "Open 10 crates."
+    category: CRATES
+    type: INCREMENTAL
+    target: 10
+    icon: CHEST
+    world-states: []
+
+  - id: crate_opener_2
+    name: "<light_purple>📦 Crate Opener II"
+    description: "Open 100 crates."
+    category: CRATES
+    type: INCREMENTAL
+    target: 100
+    icon: CHEST
+    world-states: []
+
+  - id: crate_opener_3
+    name: "<gold>📦 Crate Addict"
+    description: "Open 1,000 crates."
+    category: CRATES
+    type: INCREMENTAL
+    target: 1000
+    icon: CHEST
+    world-states: []
+
+  - id: crate_opener_4
+    name: "<aqua>📦 Crate Master"
+    description: "Open 10,000 crates."
+    category: CRATES
+    type: INCREMENTAL
+    target: 10000
+    icon: CHEST
+    world-states: []
+
+  # ─── AUCTION (NexusAuctionHouse) ─────────────────────────────────
+  - id: auction_seller_1
+    name: "<yellow>🏷 Market Apprentice"
+    description: "Sell 10 items on the auction house."
+    category: AUCTION
+    type: INCREMENTAL
+    target: 10
+    icon: PAPER
+    world-states: []
+
+  - id: auction_seller_2
+    name: "<gold>🏷 Market Veteran"
+    description: "Sell 100 items on the auction house."
+    category: AUCTION
+    type: INCREMENTAL
+    target: 100
+    icon: PAPER
+    world-states: []
+
+  - id: auction_seller_3
+    name: "<aqua>🏷 Market King"
+    description: "Sell 1,000 items on the auction house."
+    category: AUCTION
+    type: INCREMENTAL
+    target: 1000
+    icon: PAPER
+    world-states: []
+    title-reward: merchant_king
+
+  # ─── FISHING (EvenMoreFish) ───────────────────────────────────────
+  - id: fishing_tournament_win
+    name: "<aqua>🎣 Tournament Champion"
+    description: "Win a fishing tournament."
+    category: FISHING
+    type: ONE_SHOT
+    target: 1
+    icon: FISHING_ROD
+    world-states: []
+    title-reward: summer_fisher
+
+  - id: fishing_rare_catch
+    name: "<blue>🐟 Rare Catch"
+    description: "Catch a rare fish."
+    category: FISHING
+    type: ONE_SHOT
+    target: 1
+    icon: TROPICAL_FISH
+    world-states: []
+
+  - id: fishing_legendary_catch
+    name: "<gold>🐟 Legendary Angler"
+    description: "Catch a legendary fish."
+    category: FISHING
+    type: ONE_SHOT
+    target: 1
+    icon: PUFFERFISH
+    world-states: []
+    title-reward: legend
+
+  # ─── QUESTS (ODailyQuests) ────────────────────────────────────────
+  - id: quest_10
+    name: "<green>📋 Quest Starter"
+    description: "Complete 10 daily quests."
+    category: QUEST
+    type: INCREMENTAL
+    target: 10
+    icon: BOOK
+    world-states: []
+
+  - id: quest_100
+    name: "<yellow>📋 Quest Veteran"
+    description: "Complete 100 daily quests."
+    category: QUEST
+    type: INCREMENTAL
+    target: 100
+    icon: BOOK
+    world-states: []
+
+  - id: quest_1000
+    name: "<gold>📋 Quest Master"
+    description: "Complete 1,000 daily quests."
+    category: QUEST
+    type: INCREMENTAL
+    target: 1000
+    icon: WRITABLE_BOOK
+    world-states: []
+    title-reward: legend
+
+  # ─── PLAYTIME ─────────────────────────────────────────────────────
+  - id: playtime_10h
+    name: "<green>⏱ Regular"
+    description: "Play for 10 hours."
+    category: PLAYTIME
+    type: ONE_SHOT
+    target: 36000
+    icon: CLOCK
+    world-states: []
+
+  - id: playtime_100h
+    name: "<yellow>⏱ Dedicated"
+    description: "Play for 100 hours."
+    category: PLAYTIME
+    type: ONE_SHOT
+    target: 360000
+    icon: CLOCK
+    world-states: []
+
+  - id: playtime_500h
+    name: "<gold>⏱ Veteran"
+    description: "Play for 500 hours."
+    category: PLAYTIME
+    type: ONE_SHOT
+    target: 1800000
+    icon: CLOCK
+    world-states: []
+    title-reward: legend
+
+  - id: playtime_1000h
+    name: "<aqua>⏱ Legend"
+    description: "Play for 1,000 hours."
+    category: PLAYTIME
+    type: ONE_SHOT
+    target: 3600000
+    icon: CLOCK
+    world-states: []
+    title-reward: legend
+
+  # ─── SHOPS (QuickShop-Hikari) ─────────────────────────────────────
+  - id: shop_owner_1
+    name: "<green>🏪 Shop Owner"
+    description: "Create your first shop."
+    category: SHOPS
+    type: INCREMENTAL
+    target: 1
+    icon: BARREL
+    world-states: []
+
+  - id: shop_owner_10
+    name: "<yellow>🏪 Shop Chain"
+    description: "Create 10 shops."
+    category: SHOPS
+    type: INCREMENTAL
+    target: 10
+    icon: BARREL
+    world-states: []
+
+  - id: shop_owner_50
+    name: "<gold>🏪 Market Mogul"
+    description: "Create 50 shops."
+    category: SHOPS
+    type: INCREMENTAL
+    target: 50
+    icon: BARREL
+    world-states: []
+    title-reward: merchant_king
+
+  # ─── EXPEDITION ───────────────────────────────────────────────────
+  - id: expedition_10
+    name: "<aqua>⛵ Explorer I"
+    description: "Complete 10 expeditions."
+    category: EXPEDITION
+    type: INCREMENTAL
+    target: 10
+    icon: MAP
+    world-states: []
+
+  - id: expedition_100
+    name: "<blue>⛵ Explorer II"
+    description: "Complete 100 expeditions."
+    category: EXPEDITION
+    type: INCREMENTAL
+    target: 100
+    icon: MAP
+    world-states: []
+    title-reward: treasure_hunter
+
+  - id: expedition_1000
+    name: "<dark_aqua>⛵ Master Explorer"
+    description: "Complete 1,000 expeditions."
+    category: EXPEDITION
+    type: INCREMENTAL
+    target: 1000
+    icon: FILLED_MAP
+    world-states: []
+    title-reward: legend
+
+  # ─── HALL OF FAME ─────────────────────────────────────────────────
+  - id: hof_top10
+    name: "<yellow>🏆 Hall of Fame"
+    description: "Reach top 10 in any leaderboard."
+    category: HALL_OF_FAME
+    type: ONE_SHOT
+    target: 10
+    icon: GOLDEN_APPLE
+    world-states: []
+
+  - id: hof_top3
+    name: "<gold>🏆 Elite"
+    description: "Reach top 3 in any leaderboard."
+    category: HALL_OF_FAME
+    type: ONE_SHOT
+    target: 3
+    icon: GOLDEN_APPLE
+    world-states: []
+    title-reward: legend
+
+  - id: hof_top1
+    name: "<aqua>👑 Champion"
+    description: "Reach #1 in any leaderboard."
+    category: HALL_OF_FAME
+    type: ONE_SHOT
+    target: 1
+    icon: NETHER_STAR
+    world-states: []
+    title-reward: legend
+
+  # ─── DISCOVERY ────────────────────────────────────────────────────
+  - id: first_discoverer
+    name: "<light_purple>🔭 First Discoverer"
+    description: "Be the first to discover something on the server."
+    category: DISCOVERY
+    type: ONE_SHOT
+    target: 1
+    icon: SPYGLASS
+    world-states: []
+    title-reward: first_discoverer
+
+  # ─── TOWNY ────────────────────────────────────────────────────────
+  - id: town_founder
+    name: "<green>🏘 Town Founder"
+    description: "Found a town."
+    category: TOWNY
+    type: ONE_SHOT
+    target: 1
+    icon: OAK_PLANKS
+    world-states: []
+
+  - id: nation_founder
+    name: "<gold>🏰 Nation Founder"
+    description: "Found a nation."
+    category: TOWNY
+    type: ONE_SHOT
+    target: 1
+    icon: IRON_BARS
+    world-states: []
+
+  - id: town_growth_1
+    name: "<yellow>👥 Population Boom"
+    description: "Have 10 residents in your town."
+    category: TOWNY
+    type: INCREMENTAL
+    target: 10
+    icon: PLAYER_HEAD
+    world-states: []
+
+  # ─── SEASONAL ─────────────────────────────────────────────────────
+  - id: winter_survivor
+    name: "<aqua>❄ Winter Survivor"
+    description: "Complete 5 expeditions during winter."
+    category: SEASONAL
+    type: INCREMENTAL
+    target: 5
+    icon: PACKED_ICE
+    world-states: [ winter ]
+    title-reward: winter_survivor
+
+  - id: summer_fisher
+    name: "<yellow>☀ Summer Fisher"
+    description: "Complete 5 fishing expeditions during summer."
+    category: SEASONAL
+    type: INCREMENTAL
+    target: 5
+    icon: FISHING_ROD
+    world-states: [ summer ]
+    title-reward: summer_fisher
+
+  - id: autumn_merchant
+    name: "<dark_orange>🍂 Autumn Merchant"
+    description: "Earn $50,000 during autumn."
+    category: SEASONAL
+    type: INCREMENTAL
+    target: 50000
+    icon: PUMPKIN
+    world-states: [ autumn ]
+    title-reward: autumn_merchant
+
+  - id: spring_explorer
+    name: "<green>🌸 Spring Explorer"
+    description: "Complete 5 exploration expeditions during spring."
+    category: SEASONAL
+    type: INCREMENTAL
+    target: 5
+    icon: POPPY
+    world-states: [ spring ]
+    title-reward: spring_explorer
+
+  # ─── WORLD EVENTS ─────────────────────────────────────────────────
+  - id: survive_blood_moon
+    name: "<dark_red>🌑 Moon Survivor"
+    description: "Survive a Blood Moon event."
+    category: EVENT
+    type: ONE_SHOT
+    target: 1
+    icon: RED_DYE
+    world-states: [ blood_moon ]
+    title-reward: moon_survivor
+
+  - id: participate_treasure_hunt
+    name: "<gold>💎 Treasure Seeker"
+    description: "Complete an expedition during Treasure Hunt."
+    category: EVENT
+    type: ONE_SHOT
+    target: 1
+    icon: CHEST
+    world-states: [ treasure_hunt ]
+    title-reward: treasure_hunter
+
+  - id: diamond_fever_participant
+    name: "<aqua>💎 Diamond Fever"
+    description: "Complete a mining expedition during Diamond Fever."
+    category: EVENT
+    type: ONE_SHOT
+    target: 1
+    icon: DIAMOND
+    world-states: [ diamond_fever ]

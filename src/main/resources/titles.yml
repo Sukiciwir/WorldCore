@@ -1,0 +1,88 @@
+# WorldCore Titles
+# ──────────────────────────────────────────────────────────────────
+# Each title has:
+#   id:           Unique key
+#   display:      Display name (shown in GUI, MiniMessage)
+#   prefix:       Chat/TAB prefix (MiniMessage)
+#   description:  How to unlock
+#   seasonal:     true = can expire after season ends
+# ──────────────────────────────────────────────────────────────────
+
+titles:
+  dragon_slayer:
+    display: "<dark_purple>🐉 Dragon Slayer"
+    prefix: "<dark_purple>[Dragon Slayer]</dark_purple> "
+    description: "Awarded for defeating the Ender Dragon as first discoverer."
+    seasonal: false
+
+  winter_survivor:
+    display: "<aqua>❄ Winter Survivor"
+    prefix: "<aqua>[Winter Survivor]</aqua> "
+    description: "Complete 5 expeditions during winter."
+    seasonal: true
+
+  summer_fisher:
+    display: "<yellow>☀ Summer Fisher"
+    prefix: "<yellow>[Summer Fisher]</yellow> "
+    description: "Complete 5 fishing expeditions during summer."
+    seasonal: true
+
+  autumn_merchant:
+    display: "<dark_orange>🍂 Autumn Merchant"
+    prefix: "<dark_orange>[Autumn Merchant]</dark_orange> "
+    description: "Earn $50,000 during autumn."
+    seasonal: true
+
+  spring_explorer:
+    display: "<green>🌸 Spring Explorer"
+    prefix: "<green>[Spring Explorer]</green> "
+    description: "Complete 5 exploration expeditions during spring."
+    seasonal: true
+
+  merchant:
+    display: "<gold>💰 Merchant"
+    prefix: "<gold>[Merchant]</gold> "
+    description: "Reach a balance of $100,000."
+    seasonal: false
+
+  merchant_king:
+    display: "<gold>👑 Merchant King"
+    prefix: "<gold>[Merchant King]</gold> "
+    description: "Reach a balance of $1,000,000 and sell 1,000 items."
+    seasonal: false
+
+  moon_survivor:
+    display: "<dark_red>🌑 Moon Survivor"
+    prefix: "<dark_red>[Moon Survivor]</dark_red> "
+    description: "Survive a Blood Moon event."
+    seasonal: false
+
+  legend:
+    display: "<light_purple>⭐ Legend"
+    prefix: "<light_purple>[Legend]</light_purple> "
+    description: "Awarded to the most accomplished players."
+    seasonal: false
+
+  first_discoverer:
+    display: "<light_purple>🔭 First Discoverer"
+    prefix: "<light_purple>[First Discoverer]</light_purple> "
+    description: "Be the first to discover something on the server."
+    seasonal: false
+
+  treasure_hunter:
+    display: "<gold>💎 Treasure Hunter"
+    prefix: "<gold>[Treasure Hunter]</gold> "
+    description: "Complete 100 expeditions and participate in Treasure Hunt."
+    seasonal: false
+
+  winter_champion:
+    display: "<aqua>🏆 Winter Champion"
+    prefix: "<aqua>[Winter Champion]</aqua> "
+    description: "Top expedition performer of the winter season."
+    seasonal: true
+
+  blood_moon_survivor:
+    display: "<dark_red>🌑 Blood Moon Survivor"
+    prefix: "<dark_red>[Blood Moon Survivor]</dark_red> "
+    description: "Survive the Blood Moon and complete the Ancient Crypt expedition."
+    seasonal: false

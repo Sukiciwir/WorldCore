@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>dev.worldcore</groupId>
+    <artifactId>WorldCore</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>WorldCore</name>
+    <description>Living World Engine for Paper 1.21 — central reaction layer for seasons, events, economy, expeditions, achievements and titles.</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <!-- Paper -->
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <!-- PlaceholderAPI -->
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <!-- LuckPerms -->
+        <repository>
+            <id>luckperms</id>
+            <url>https://repo.lucko.me/</url>
+        </repository>
+        <!-- Towny -->
+        <repository>
+            <id>glaremasters</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
+        </repository>
+        <!-- Vault (JitPack) -->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <!-- CodeMC (EvenMoreFish) -->
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Paper API 1.21 -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- SQLite JDBC — shaded into the jar -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.45.3.0</version>
+        </dependency>
+
+        <!-- PlaceholderAPI (optional soft-dep) -->
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Vault economy API (optional) -->
+        <dependency>
+            <groupId>com.github.MilkBowl</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7.1</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- LuckPerms (optional soft dep) -->
+        <dependency>
+            <groupId>net.luckperms</groupId>
+            <artifactId>api</artifactId>
+            <version>5.4</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Towny (optional) -->
+        <dependency>
+            <groupId>com.palmergames.bukkit.towny</groupId>
+            <artifactId>towny</artifactId>
+            <version>0.100.4.3</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- EvenMoreFish (optional) -->
+        <dependency>
+            <groupId>com.oheers.fish</groupId>
+            <artifactId>EvenMoreFish</artifactId>
+            <version>2.3.4</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- QuickShop-Hikari (optional) -->
+        <dependency>
+            <groupId>com.ghostchu</groupId>
+            <artifactId>quickshop-bukkit</artifactId>
+            <version>6.2.0.10</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+            WorldEvents — local system dependency.
+            Install: mvn install:install-file -Dfile=WorldEvents-1.8.6.jar -DgroupId=com.worldevents -DartifactId=WorldEvents -Dversion=1.8.6 -Dpackaging=jar
+        -->
+        <dependency>
+            <groupId>com.worldevents</groupId>
+            <artifactId>WorldEvents</artifactId>
+            <version>1.8.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../WorldEvents-1.8.6.jar</systemPath>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+            AeternumSeasons — local system dependency.
+            Install: mvn install:install-file -Dfile=AeternumSeasons-4.1.jar -DgroupId=Kinkin.aeternum -DartifactId=AeternumSeasons -Dversion=4.1 -Dpackaging=jar
+        -->
+        <dependency>
+            <groupId>Kinkin.aeternum</groupId>
+            <artifactId>AeternumSeasons</artifactId>
+            <version>4.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../AeternumSeasons-4.1.jar</systemPath>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+            DiscoveryCore — local system dependency (for HoF hook + RarityCore hook).
+            Build DiscoveryCore first.
+        -->
+        <dependency>
+            <groupId>dev.discoverycore</groupId>
+            <artifactId>DiscoveryCore</artifactId>
+            <version>1.0.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../DiscoveryCore/target/DiscoveryCore-1.0.2.jar</systemPath>
+            <optional>true</optional>
+        </dependency>
+
+        <!--
+            The following hooks use reflection only (no compile-time API):
+              - CrazyCrates      (com.badbones69.crazycrates)
+              - ODailyQuests     (plugin-specific)
+              - NexusAuctionHouse
+              - PlayTime
+              - TAB
+              - BankPlus
+              - PlayerPoints     (org.black_ixx.playerpoints)
+              - EconomyShopGUI
+        -->
+    </dependencies>
+
+    <build>
+        <finalName>WorldCore-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>shade</goal></goals>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <!-- Relocate sqlite-jdbc to avoid classpath conflicts -->
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.sqlite</pattern>
+                                    <shadedPattern>dev.worldcore.libs.sqlite</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

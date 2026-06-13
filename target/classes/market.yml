@@ -1,0 +1,108 @@
+# WorldCore Market Engine Configuration
+
+supply-demand:
+  # Max allowed multiplier from supply/demand alone (1.5 = +50%)
+  max-positive-modifier: 1.5
+  # Min allowed multiplier from supply/demand alone (0.5 = -50%)
+  max-negative-modifier: 0.5
+  # The ratio of (sold / bought) determines the modifier.
+  # If 1000 items are sold and 500 bought, ratio = 2.0.
+  # The engine maps the ratio to a modifier.
+  
+history:
+  # How often to snapshot prices to the database (in ticks, 72000 = 1 hour)
+  snapshot-interval-ticks: 72000
+
+categories:
+  ORES:
+    - DIAMOND
+    - IRON_INGOT
+    - GOLD_INGOT
+    - COAL
+    - EMERALD
+    - REDSTONE
+    - LAPIS_LAZULI
+  CROPS:
+    - WHEAT
+    - CARROT
+    - POTATO
+    - BEETROOT
+    - MELON
+    - PUMPKIN
+    - SUGAR_CANE
+  FISH:
+    - COD
+    - SALMON
+    - TROPICAL_FISH
+    - PUFFERFISH
+  MOB_DROPS:
+    - ROTTEN_FLESH
+    - BONE
+    - GUNPOWDER
+    - SPIDER_EYE
+    - STRING
+    - ENDER_PEARL
+  TREASURE:
+    - TOTEM_OF_UNDYING
+    - HEART_OF_THE_SEA
+    - NETHER_STAR
+    - ENCHANTED_GOLDEN_APPLE
+
+trends:
+  Stable:
+    multiplier: 1.0
+    duration-days: 7
+    chance: 50
+  BullMarket:
+    multiplier: 1.1
+    duration-days: 3
+    chance: 15
+  BearMarket:
+    multiplier: 0.9
+    duration-days: 3
+    chance: 15
+  Inflation:
+    multiplier: 1.0
+    duration-days: 5
+    chance: 10
+    category-modifiers:
+      FOOD: 1.2
+  Recession:
+    multiplier: 1.0
+    duration-days: 5
+    chance: 10
+    category-modifiers:
+      ORES: 0.85
+  GoldenAge:
+    multiplier: 1.0
+    duration-days: 2
+    chance: 5
+    category-modifiers:
+      CROPS: 1.25
+  EconomicCrisis:
+    multiplier: 1.0
+    duration-days: 2
+    chance: 5
+    category-modifiers:
+      TREASURE: 0.80
+
+season-modifiers:
+  spring:
+    CROPS: 1.15
+  summer:
+    CROPS: 1.20
+    FISH: 0.90
+  autumn:
+    CROPS: 1.10
+  winter:
+    FISH: 1.30
+    CROPS: 0.85
+
+event-modifiers:
+  blood_moon:
+    MOB_DROPS: 1.50
+    TREASURE: 1.15
+  diamond_fever:
+    ORES: 0.80
+  treasure_hunt:
+    TREASURE: 1.15

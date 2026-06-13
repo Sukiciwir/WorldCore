@@ -1,0 +1,248 @@
+# WorldCore Expeditions
+# ──────────────────────────────────────────────────────────────────
+# Each expedition has:
+#   id:           Unique key (lowercase, no spaces)
+#   name:         Display name (MiniMessage supported)
+#   description:  Short description
+#   category:     MINING, FISHING, EXPLORATION, TREASURE, COMBAT, SEASONAL, EVENT, CUSTOM
+#   world-states: List of state IDs this expedition is available for (empty = always)
+#   duration-seconds: Duration in seconds
+#   costs:        List of cost items (type: MONEY/VAULT/PLAYER_POINTS/ITEM)
+#   rewards:      List of reward items (type: MONEY/ITEM/CRATE_KEY)
+# ──────────────────────────────────────────────────────────────────
+
+expeditions:
+
+  # ─── Always Available ────────────────────────────────────────────
+  - id: basic_mining
+    name: "<gray>⛏ Basic Mining Run"
+    description: "A short trip to the mines."
+    category: MINING
+    world-states: []
+    duration-seconds: 3600
+    costs:
+      - type: MONEY
+        amount: 500
+    rewards:
+      - type: ITEM
+        material: IRON_ORE
+        amount: 16
+        chance: 100
+      - type: ITEM
+        material: COAL
+        amount: 32
+        chance: 80
+      - type: MONEY
+        amount: 250
+        chance: 50
+
+  - id: basic_fishing
+    name: "<aqua>🎣 Basic Fishing Trip"
+    description: "Head to the local river for a catch."
+    category: FISHING
+    world-states: []
+    duration-seconds: 5400
+    costs:
+      - type: MONEY
+        amount: 300
+    rewards:
+      - type: ITEM
+        material: COD
+        amount: 8
+        chance: 100
+      - type: ITEM
+        material: SALMON
+        amount: 4
+        chance: 60
+      - type: MONEY
+        amount: 150
+        chance: 40
+
+  # ─── Winter Expeditions ──────────────────────────────────────────
+  - id: frozen_lake
+    name: "<aqua>❄ Frozen Lake Expedition"
+    description: "Brave the frozen lake for rare fish and icy treasures."
+    category: SEASONAL
+    world-states: [ winter ]
+    duration-seconds: 14400
+    costs:
+      - type: MONEY
+        amount: 5000
+      # OR alternative: 64 packed ice
+      - type: ITEM
+        material: PACKED_ICE
+        amount: 64
+    rewards:
+      - type: ITEM
+        material: COD
+        amount: 16
+        chance: 100
+      - type: ITEM
+        material: SALMON
+        amount: 8
+        chance: 80
+      - type: ITEM
+        material: DIAMOND
+        amount: 1
+        chance: 25
+      - type: CRATE_KEY
+        crate: winter_crate
+        amount: 1
+        chance: 30
+
+  - id: ice_cave_spelunking
+    name: "<blue>🧊 Ice Cave Spelunking"
+    description: "Explore the deep ice caves for rare ores."
+    category: MINING
+    world-states: [ winter ]
+    duration-seconds: 21600
+    costs:
+      - type: MONEY
+        amount: 8000
+    rewards:
+      - type: ITEM
+        material: DIAMOND
+        amount: 3
+        chance: 60
+      - type: ITEM
+        material: EMERALD
+        amount: 2
+        chance: 40
+      - type: ITEM
+        material: IRON_INGOT
+        amount: 32
+        chance: 100
+      - type: CRATE_KEY
+        crate: winter_crate
+        amount: 2
+        chance: 20
+
+  # ─── Summer Expeditions ──────────────────────────────────────────
+  - id: desert_treasure
+    name: "<yellow>🏜 Desert Treasure Hunt"
+    description: "Search the scorching desert for buried riches."
+    category: TREASURE
+    world-states: [ summer ]
+    duration-seconds: 10800
+    costs:
+      - type: MONEY
+        amount: 3000
+    rewards:
+      - type: ITEM
+        material: GOLD_INGOT
+        amount: 8
+        chance: 100
+      - type: ITEM
+        material: EMERALD
+        amount: 3
+        chance: 50
+      - type: CRATE_KEY
+        crate: summer_crate
+        amount: 1
+        chance: 25
+
+  # ─── Blood Moon Expeditions ──────────────────────────────────────
+  - id: ancient_crypt
+    name: "<dark_red>💀 Ancient Crypt"
+    description: "Descend into the ancient crypt during the blood moon."
+    category: COMBAT
+    world-states: [ blood_moon ]
+    duration-seconds: 28800
+    costs:
+      - type: MONEY
+        amount: 10000
+    rewards:
+      - type: ITEM
+        material: ENCHANTED_BOOK
+        amount: 1
+        chance: 40
+      - type: ITEM
+        material: DIAMOND
+        amount: 4
+        chance: 70
+      - type: ITEM
+        material: TOTEM_OF_UNDYING
+        amount: 1
+        chance: 15
+      - type: CRATE_KEY
+        crate: blood_moon_crate
+        amount: 2
+        chance: 50
+
+  # ─── Treasure Hunt Event Expeditions ─────────────────────────────
+  - id: pirate_voyage
+    name: "<gold>🏴‍☠ Pirate Voyage"
+    description: "Set sail with pirates during the Treasure Hunt event."
+    category: EVENT
+    world-states: [ treasure_hunt ]
+    duration-seconds: 18000
+    costs:
+      - type: MONEY
+        amount: 7500
+    rewards:
+      - type: ITEM
+        material: EMERALD
+        amount: 8
+        chance: 100
+      - type: ITEM
+        material: NAUTILUS_SHELL
+        amount: 2
+        chance: 50
+      - type: ITEM
+        material: GOLD_INGOT
+        amount: 16
+        chance: 80
+      - type: CRATE_KEY
+        crate: treasure_crate
+        amount: 1
+        chance: 45
+
+  # ─── Autumn Expeditions ──────────────────────────────────────────
+  - id: harvest_festival
+    name: "<dark_orange>🍂 Harvest Festival Run"
+    description: "Join the harvest festival and collect seasonal goods."
+    category: SEASONAL
+    world-states: [ autumn ]
+    duration-seconds: 7200
+    costs:
+      - type: MONEY
+        amount: 2000
+    rewards:
+      - type: ITEM
+        material: PUMPKIN
+        amount: 16
+        chance: 100
+      - type: ITEM
+        material: APPLE
+        amount: 32
+        chance: 80
+      - type: MONEY
+        amount: 1500
+        chance: 60
+
+  # ─── Spring Expeditions ──────────────────────────────────────────
+  - id: spring_exploration
+    name: "<green>🌸 Spring Exploration"
+    description: "Explore blooming forests and meadows."
+    category: EXPLORATION
+    world-states: [ spring ]
+    duration-seconds: 9000
+    costs:
+      - type: MONEY
+        amount: 1500
+    rewards:
+      - type: ITEM
+        material: OAK_SAPLING
+        amount: 8
+        chance: 80
+      - type: ITEM
+        material: BONE_MEAL
+        amount: 16
+        chance: 100
+      - type: ITEM
+        material: FLOWER_POT
+        amount: 2
+        chance: 40
+      - type: MONEY
+        amount: 800
+        chance: 50

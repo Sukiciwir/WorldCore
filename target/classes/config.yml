@@ -1,0 +1,106 @@
+# WorldCore Configuration
+# Living World Engine for Paper 1.21
+
+storage:
+  # Type: SQLITE or YAML (SQLite recommended)
+  type: SQLITE
+  # Auto-migrate YAML data to SQLite on startup
+  auto-migrate: true
+
+# ─── World State ──────────────────────────────────────────────────────────────
+world-state:
+  # Default season when no plugins are detected
+  # Options: SPRING, SUMMER, AUTUMN, WINTER
+  default-season: SPRING
+  # How often to re-check active state (ticks, 0 = event-driven only)
+  poll-interval-ticks: 0
+
+# ─── Economy Modifiers ────────────────────────────────────────────────────────
+# Modify sell/buy prices based on the current world state.
+# State key = WorldEvents event name (lowercase) OR season name (lowercase).
+# Use 'sell' and 'buy' multipliers (1.0 = no change, 1.3 = +30%, 0.8 = -20%).
+economy-modifiers:
+  enabled: true
+
+  # Which economy hook to use for modifiers
+  # Options: QUICKSHOP, VAULT, AUTO (tries QuickShop first, then Vault)
+  hook: AUTO
+
+  states:
+    winter:
+      - material: COD
+        sell: 1.30
+        buy: 1.00
+      - material: SALMON
+        sell: 1.30
+        buy: 1.00
+      - material: POTATO
+        sell: 1.20
+        buy: 1.00
+      - material: WHEAT
+        sell: 0.85
+        buy: 1.00
+
+    summer:
+      - material: WHEAT
+        sell: 1.20
+        buy: 1.00
+      - material: MELON
+        sell: 1.15
+        buy: 1.00
+      - material: SUGAR_CANE
+        sell: 1.10
+        buy: 1.00
+
+    blood_moon:
+      - material: ROTTEN_FLESH
+        sell: 1.50
+        buy: 1.00
+      - material: BONE
+        sell: 1.30
+        buy: 1.00
+      - material: TOTEM_OF_UNDYING
+        sell: 1.15
+        buy: 1.00
+
+    diamond_fever:
+      - material: DIAMOND
+        sell: 0.80
+        buy: 1.00
+      - material: COAL
+        sell: 1.10
+        buy: 1.00
+
+# ─── Expedition System ────────────────────────────────────────────────────────
+expeditions:
+  enabled: true
+  # Default slots per player (upgradeable via permission)
+  default-slots: 1
+  # Check interval for completed expeditions (ticks)
+  check-interval-ticks: 600
+
+# ─── Achievement System ────────────────────────────────────────────────────────
+achievements:
+  enabled: true
+  # Announce achievement unlock to all players
+  broadcast-unlock: true
+
+# ─── Title System ─────────────────────────────────────────────────────────────
+titles:
+  enabled: true
+  # Push title prefix to TAB and LuckPerms when set
+  push-tab: true
+  push-luckperms: false
+  # LuckPerms group prefix format: {title}
+  luckperms-prefix-format: "&7[{title}]&r "
+  # TAB prefix format
+  tab-prefix-format: "&7[&f{title}&7] "
+
+# ─── GUI ──────────────────────────────────────────────────────────────────────
+gui:
+  main-title: "<gradient:#6a11cb:#2575fc>⚡ WorldCore</gradient>"
+  world-state-title: "<dark_purple>🌍 World State"
+  achievements-title: "<gold>🏆 Achievements"
+  expeditions-title: "<aqua>⛵ Expeditions"
+  titles-title: "<yellow>👑 Titles"
+  statistics-title: "<green>📊 Statistics"

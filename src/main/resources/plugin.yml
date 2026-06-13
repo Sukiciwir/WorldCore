@@ -1,0 +1,109 @@
+name: WorldCore
+version: '${project.version}'
+main: dev.worldcore.WorldCorePlugin
+api-version: '1.21'
+description: Living World Engine — seasons, events, economy, expeditions, achievements, titles
+authors: [ WorldCore ]
+
+softdepend:
+  - WorldEvents
+  - AeternumSeasons
+  - PlaceholderAPI
+  - Vault
+  - LuckPerms
+  - TAB
+  - CrazyCrates
+  - ODailyQuests
+  - EvenMoreFish
+  - NexusAuctionHouse
+  - Towny
+  - PlayTime
+  - BankPlus
+  - PlayerPoints
+  - QuickShop-Hikari
+  - EconomyShopGUI
+  - RarityCore
+  - DiscoveryCore
+
+commands:
+  worldcore:
+    description: WorldCore main command
+    usage: /worldcore [state|reload|admin|debug]
+    permission: worldcore.use
+    aliases: [ wc ]
+  expedition:
+    description: Expedition command
+    usage: /expedition [start|claim|list|cancel]
+    permission: worldcore.expedition.use
+    aliases: [ exp ]
+  achievements:
+    description: Achievements command
+    usage: /achievements [list|info]
+    permission: worldcore.achievements.use
+    aliases: [ ach ]
+  titles:
+    description: Titles command
+    usage: /titles [list|set|clear]
+    permission: worldcore.titles.use
+
+permissions:
+  worldcore.use:
+    description: Basic access to WorldCore
+    default: true
+
+  worldcore.admin:
+    description: Full admin access to WorldCore
+    default: op
+    children:
+      worldcore.admin.reload: true
+      worldcore.admin.setstate: true
+      worldcore.admin.debug: true
+      worldcore.admin.expedition.bypass: true
+
+  worldcore.admin.reload:
+    description: Reload WorldCore config
+    default: op
+
+  worldcore.admin.setstate:
+    description: Force set world state
+    default: op
+
+  worldcore.admin.debug:
+    description: Debug commands
+    default: op
+
+  worldcore.admin.expedition.bypass:
+    description: Bypass expedition costs
+    default: op
+
+  worldcore.expedition.use:
+    description: Use expedition system
+    default: true
+
+  worldcore.expedition.slots.1:
+    description: 1 expedition slot (default)
+    default: true
+
+  worldcore.expedition.slots.3:
+    description: 3 expedition slots
+    default: false
+
+  worldcore.expedition.slots.5:
+    description: 5 expedition slots
+    default: false
+
+  worldcore.expedition.slots.10:
+    description: 10 expedition slots
+    default: false
+
+  worldcore.achievements.use:
+    description: View achievements
+    default: true
+
+  worldcore.titles.use:
+    description: View and select titles
+    default: true
+
+  worldcore.gui.open:
+    description: Open WorldCore GUI menus
+    default: true
