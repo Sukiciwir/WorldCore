@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
+import java.util.Calendar;
 
 /**
  * Manages the full expedition lifecycle:
@@ -56,6 +57,11 @@ public final class ExpeditionManager {
     private @Nullable CrazyCratesHook  cratesHook;
     private @Nullable PlayerPointsHook ppHook;
 
+    // Daily Rotation
+    private final Set<String> dailyPool = new HashSet<>();
+    private int currentDayOfYear = -1;
+    private final File dailyFile;
+
     public ExpeditionManager(@NotNull Plugin plugin, @NotNull Logger log,
                              @NotNull MainConfig config, @NotNull MessageConfig messages,
                              @NotNull StorageBackend storage, @NotNull StatisticsManager stats) {
@@ -65,6 +71,10 @@ public final class ExpeditionManager {
         this.messages = messages;
         this.storage  = storage;
         this.stats    = stats;
+        
+        this.dailyFile = new File(plugin.getDataFolder(), "daily_pool.yml");
+        loadDailyPool();
+        Bukkit.getScheduler().runTaskTimer(plugin, this::checkDailyRoll, 100L, 1200L);
     }
 
     // ─── Dependency Injection ─────────────────────────────────────────────────
@@ -92,6 +102,7 @@ public final class ExpeditionManager {
             }
         }
         log.info("[Expeditions] Loaded " + definitions.size() + " expedition definitions.");
+        checkDailyRoll();
     }
 
     @NotNull
@@ -163,6 +174,78 @@ public final class ExpeditionManager {
 
     public void onStateChange(@NotNull WorldState state) {
         currentStateId = state.getId();
+        checkDailyRoll(); // Re-roll if necessary based on new state? Or just let daily handle it.
+    }
+
+    // ─── Daily Rotation ───────────────────────────────────────────────────────
+
+    private void checkDailyRoll() {
+        if (!config.isDailyRotationEnabled()) return;
+
+        Calendar cal = Calendar.getInstance();
+        int today = cal.get(Calendar.DAY_OF_YEAR) + (cal.get(Calendar.YEAR) * 365);
+        if (today != currentDayOfYear) {
+            rollDailyPool(today);
+        }
+    }
+
+    private void rollDailyPool(int today) {
+        currentDayOfYear = today;
+        dailyPool.clear();
+
+        List<Expedition> generals = new ArrayList<>();
+        List<Expedition> seasonals = new ArrayList<>();
+        List<Expedition> events = new ArrayList<>();
+
+        for (Expedition e : definitions.values()) {
+            if (e.worldStates().isEmpty()) {
+                generals.add(e);
+            } else if (e.worldStates().contains("spring") || e.worldStates().contains("summer") ||
+                       e.worldStates().contains("autumn") || e.worldStates().contains("winter")) {
+                if (e.isAvailable(currentStateId)) seasonals.add(e);
+            } else {
+                if (e.isAvailable(currentStateId)) events.add(e);
+            }
+        }
+
+        Collections.shuffle(generals);
+        Collections.shuffle(seasonals);
+        Collections.shuffle(events);
+
+        for (int i = 0; i < config.getDailyGeneralCount() && i < generals.size(); i++) {
+            dailyPool.add(generals.get(i).id());
+        }
+        for (int i = 0; i < config.getDailySeasonalCount() && i < seasonals.size(); i++) {
+            dailyPool.add(seasonals.get(i).id());
+        }
+        for (int i = 0; i < config.getDailyEventCount() && i < events.size(); i++) {
+            dailyPool.add(events.get(i).id());
+        }
+
+        saveDailyPool();
+    }
+
+    private void loadDailyPool() {
+        if (!dailyFile.exists()) return;
+        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(dailyFile);
+        currentDayOfYear = yaml.getInt("day-of-year", -1);
+        List<String> list = yaml.getStringList("pool");
+        dailyPool.addAll(list);
+    }
+
+    private void saveDailyPool() {
+        YamlConfiguration yaml = new YamlConfiguration();
+        yaml.set("day-of-year", currentDayOfYear);
+        yaml.set("pool", new ArrayList<>(dailyPool));
+        try {
+            yaml.save(dailyFile);
+        } catch (Exception e) {
+            log.warning("Failed to save daily pool: " + e.getMessage());
+        }
+    }
+
+    public Set<String> getDailyPool() {
+        return dailyPool;
     }
 
     // ─── Player Cache ─────────────────────────────────────────────────────────
@@ -185,10 +268,8 @@ public final class ExpeditionManager {
     // ─── Slots ────────────────────────────────────────────────────────────────
 
     public int getMaxSlots(@NotNull Player player) {
-        for (int n : new int[]{10, 5, 3}) {
-            if (player.hasPermission("worldcore.expedition.slots." + n)) return n;
-        }
-        return config.getDefaultExpeditionSlots();
+        // Unlock all 9 top row slots by default for all players
+        return 9;
     }
 
     public int getUsedSlots(@NotNull UUID uuid) {

@@ -1,248 +1,1445 @@
 # WorldCore Expeditions
 # ──────────────────────────────────────────────────────────────────
-# Each expedition has:
-#   id:           Unique key (lowercase, no spaces)
-#   name:         Display name (MiniMessage supported)
-#   description:  Short description
-#   category:     MINING, FISHING, EXPLORATION, TREASURE, COMBAT, SEASONAL, EVENT, CUSTOM
-#   world-states: List of state IDs this expedition is available for (empty = always)
-#   duration-seconds: Duration in seconds
-#   costs:        List of cost items (type: MONEY/VAULT/PLAYER_POINTS/ITEM)
-#   rewards:      List of reward items (type: MONEY/ITEM/CRATE_KEY)
+# Auto-generated: 27 General, 36 Seasonal (9 per season), 9 Event (Total: 72)
 # ──────────────────────────────────────────────────────────────────
-
 expeditions:
-
-  # ─── Always Available ────────────────────────────────────────────
-  - id: basic_mining
-    name: "<gray>⛏ Basic Mining Run"
-    description: "A short trip to the mines."
-    category: MINING
-    world-states: []
-    duration-seconds: 3600
-    costs:
-      - type: MONEY
-        amount: 500
-    rewards:
-      - type: ITEM
-        material: IRON_ORE
-        amount: 16
-        chance: 100
-      - type: ITEM
-        material: COAL
-        amount: 32
-        chance: 80
-      - type: MONEY
-        amount: 250
-        chance: 50
-
-  - id: basic_fishing
-    name: "<aqua>🎣 Basic Fishing Trip"
-    description: "Head to the local river for a catch."
-    category: FISHING
-    world-states: []
-    duration-seconds: 5400
-    costs:
-      - type: MONEY
-        amount: 300
-    rewards:
-      - type: ITEM
-        material: COD
-        amount: 8
-        chance: 100
-      - type: ITEM
-        material: SALMON
-        amount: 4
-        chance: 60
-      - type: MONEY
-        amount: 150
-        chance: 40
-
-  # ─── Winter Expeditions ──────────────────────────────────────────
-  - id: frozen_lake
-    name: "<aqua>❄ Frozen Lake Expedition"
-    description: "Brave the frozen lake for rare fish and icy treasures."
-    category: SEASONAL
-    world-states: [ winter ]
-    duration-seconds: 14400
-    costs:
-      - type: MONEY
-        amount: 5000
-      # OR alternative: 64 packed ice
-      - type: ITEM
-        material: PACKED_ICE
-        amount: 64
-    rewards:
-      - type: ITEM
-        material: COD
-        amount: 16
-        chance: 100
-      - type: ITEM
-        material: SALMON
-        amount: 8
-        chance: 80
-      - type: ITEM
-        material: DIAMOND
-        amount: 1
-        chance: 25
-      - type: CRATE_KEY
-        crate: winter_crate
-        amount: 1
-        chance: 30
-
-  - id: ice_cave_spelunking
-    name: "<blue>🧊 Ice Cave Spelunking"
-    description: "Explore the deep ice caves for rare ores."
-    category: MINING
-    world-states: [ winter ]
-    duration-seconds: 21600
-    costs:
-      - type: MONEY
-        amount: 8000
-    rewards:
-      - type: ITEM
-        material: DIAMOND
-        amount: 3
-        chance: 60
-      - type: ITEM
-        material: EMERALD
-        amount: 2
-        chance: 40
-      - type: ITEM
-        material: IRON_INGOT
-        amount: 32
-        chance: 100
-      - type: CRATE_KEY
-        crate: winter_crate
-        amount: 2
-        chance: 20
-
-  # ─── Summer Expeditions ──────────────────────────────────────────
-  - id: desert_treasure
-    name: "<yellow>🏜 Desert Treasure Hunt"
-    description: "Search the scorching desert for buried riches."
-    category: TREASURE
-    world-states: [ summer ]
-    duration-seconds: 10800
-    costs:
-      - type: MONEY
-        amount: 3000
-    rewards:
-      - type: ITEM
-        material: GOLD_INGOT
-        amount: 8
-        chance: 100
-      - type: ITEM
-        material: EMERALD
-        amount: 3
-        chance: 50
-      - type: CRATE_KEY
-        crate: summer_crate
-        amount: 1
-        chance: 25
-
-  # ─── Blood Moon Expeditions ──────────────────────────────────────
-  - id: ancient_crypt
-    name: "<dark_red>💀 Ancient Crypt"
-    description: "Descend into the ancient crypt during the blood moon."
-    category: COMBAT
-    world-states: [ blood_moon ]
-    duration-seconds: 28800
-    costs:
-      - type: MONEY
-        amount: 10000
-    rewards:
-      - type: ITEM
-        material: ENCHANTED_BOOK
-        amount: 1
-        chance: 40
-      - type: ITEM
-        material: DIAMOND
-        amount: 4
-        chance: 70
-      - type: ITEM
-        material: TOTEM_OF_UNDYING
-        amount: 1
-        chance: 15
-      - type: CRATE_KEY
-        crate: blood_moon_crate
-        amount: 2
-        chance: 50
-
-  # ─── Treasure Hunt Event Expeditions ─────────────────────────────
-  - id: pirate_voyage
-    name: "<gold>🏴‍☠ Pirate Voyage"
-    description: "Set sail with pirates during the Treasure Hunt event."
-    category: EVENT
-    world-states: [ treasure_hunt ]
-    duration-seconds: 18000
-    costs:
-      - type: MONEY
-        amount: 7500
-    rewards:
-      - type: ITEM
-        material: EMERALD
-        amount: 8
-        chance: 100
-      - type: ITEM
-        material: NAUTILUS_SHELL
-        amount: 2
-        chance: 50
-      - type: ITEM
-        material: GOLD_INGOT
-        amount: 16
-        chance: 80
-      - type: CRATE_KEY
-        crate: treasure_crate
-        amount: 1
-        chance: 45
-
-  # ─── Autumn Expeditions ──────────────────────────────────────────
-  - id: harvest_festival
-    name: "<dark_orange>🍂 Harvest Festival Run"
-    description: "Join the harvest festival and collect seasonal goods."
-    category: SEASONAL
-    world-states: [ autumn ]
-    duration-seconds: 7200
-    costs:
-      - type: MONEY
-        amount: 2000
-    rewards:
-      - type: ITEM
-        material: PUMPKIN
-        amount: 16
-        chance: 100
-      - type: ITEM
-        material: APPLE
-        amount: 32
-        chance: 80
-      - type: MONEY
-        amount: 1500
-        chance: 60
-
-  # ─── Spring Expeditions ──────────────────────────────────────────
-  - id: spring_exploration
-    name: "<green>🌸 Spring Exploration"
-    description: "Explore blooming forests and meadows."
-    category: EXPLORATION
-    world-states: [ spring ]
-    duration-seconds: 9000
-    costs:
-      - type: MONEY
-        amount: 1500
-    rewards:
-      - type: ITEM
-        material: OAK_SAPLING
-        amount: 8
-        chance: 80
-      - type: ITEM
-        material: BONE_MEAL
-        amount: 16
-        chance: 100
-      - type: ITEM
-        material: FLOWER_POT
-        amount: 2
-        chance: 40
-      - type: MONEY
-        amount: 800
-        chance: 50
+- id: basic_mining
+  name: "<gray>\u26CF Basic Mining Run"
+  description: A general expedition task.
+  category: MINING
+  world-states: []
+  duration-seconds: 10981
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 4
+    chance: 50
+- id: basic_fishing
+  name: "<aqua>\U0001F3A3 Basic Fishing Trip"
+  description: A general expedition task.
+  category: FISHING
+  world-states: []
+  duration-seconds: 7049
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 75
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+    chance: 100
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 40
+- id: lumberjack_run
+  name: "<green>\U0001FA93 Lumberjack Run"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 4046
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+    chance: 80
+- id: monster_hunt
+  name: "<red>\u2694 Monster Hunt"
+  description: A general expedition task.
+  category: COMBAT
+  world-states: []
+  duration-seconds: 5780
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: DIAMOND
+    amount: 4
+    chance: 50
+- id: deep_sea_diving
+  name: "<blue>\U0001F30A Deep Sea Diving"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 4394
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: WHEAT
+    amount: 8
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: DIAMOND
+    amount: 16
+    chance: 50
+- id: gem_mining
+  name: "<light_purple>\U0001F48E Gemstone Mining"
+  description: A general expedition task.
+  category: MINING
+  world-states: []
+  duration-seconds: 4087
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 50
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 8
+    chance: 50
+- id: archaeology_dig
+  name: "<gold>\U0001F3FA Archaeology Dig"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 13239
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: COAL
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+    chance: 50
+- id: bounty_hunting
+  name: "<red>\U0001F3AF Bounty Hunting"
+  description: A general expedition task.
+  category: COMBAT
+  world-states: []
+  duration-seconds: 6365
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 100
+  - type: ITEM
+    material: REDSTONE
+    amount: 4
+    chance: 100
+- id: cave_exploration
+  name: "<gray>\U0001F987 Cave Exploration"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 9673
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: WHEAT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 16
+    chance: 100
+- id: ruins_looting
+  name: "<gold>\U0001F3DB Ruins Looting"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 6283
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: REDSTONE
+    amount: 4
+    chance: 80
+- id: wild_animal_taming
+  name: "<green>\U0001F43A Wild Animal Taming"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 12910
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 16
+    chance: 80
+- id: deep_core_mining
+  name: "<dark_gray>\U0001FAA8 Deep Core Mining"
+  description: A general expedition task.
+  category: MINING
+  world-states: []
+  duration-seconds: 10347
+  costs:
+  - type: MONEY
+    amount: 5000
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: DIAMOND
+    amount: 32
+    chance: 100
+- id: abandoned_mineshaft
+  name: "<gray>\U0001F6E4 Abandoned Mineshaft"
+  description: A general expedition task.
+  category: MINING
+  world-states: []
+  duration-seconds: 3791
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: WHEAT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 50
+  - type: ITEM
+    material: DIAMOND
+    amount: 32
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 20
+- id: nether_scouting
+  name: "<dark_red>\U0001F525 Nether Scouting"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 5725
+  costs:
+  - type: MONEY
+    amount: 5000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 50
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 32
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 40
+- id: end_city_raid
+  name: "<light_purple>\U0001F30C End City Raid"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 4492
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 100
+  - type: ITEM
+    material: REDSTONE
+    amount: 8
+    chance: 80
+- id: ocean_monument_dive
+  name: "<aqua>\U0001F3DB Ocean Monument Dive"
+  description: A general expedition task.
+  category: COMBAT
+  world-states: []
+  duration-seconds: 6119
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 50
+  - type: ITEM
+    material: EMERALD
+    amount: 16
+    chance: 50
+- id: pillager_outpost_raid
+  name: "<dark_green>\U0001F3F9 Pillager Outpost Raid"
+  description: A general expedition task.
+  category: COMBAT
+  world-states: []
+  duration-seconds: 3716
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 100
+  - type: ITEM
+    material: REDSTONE
+    amount: 32
+    chance: 100
+- id: woodland_mansion_heist
+  name: "<dark_red>\U0001F332 Woodland Mansion Heist"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 12612
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 4
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: desert_pyramid_search
+  name: "<yellow>\U0001F3DC Desert Pyramid Search"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 13549
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: BONE
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: DIAMOND
+    amount: 4
+    chance: 100
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: jungle_temple_run
+  name: "<green>\U0001F334 Jungle Temple Run"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 4937
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 75
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 4
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 40
+- id: swamp_hut_investigation
+  name: "<dark_green>\U0001F438 Swamp Hut Investigation"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 4571
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: BONE
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 8
+    chance: 50
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 20
+- id: village_trading_route
+  name: "<green>\U0001F4E6 Village Trading Route"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 11962
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 50
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 32
+    chance: 80
+- id: stronghold_search
+  name: "<gray>\U0001F441 Stronghold Search"
+  description: A general expedition task.
+  category: EXPLORATION
+  world-states: []
+  duration-seconds: 8522
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 75
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 4
+    chance: 100
+- id: bastion_remnant_looting
+  name: "<gold>\U0001F437 Bastion Remnant Looting"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 5961
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 16
+    chance: 100
+- id: nether_fortress_assault
+  name: "<dark_red>\U0001F525 Nether Fortress Assault"
+  description: A general expedition task.
+  category: COMBAT
+  world-states: []
+  duration-seconds: 4870
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: ROTTEN_FLESH
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 100
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+    chance: 50
+- id: ancient_city_delving
+  name: <dark_aqua>warden Ancient City Delving
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 12653
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 75
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 8
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 20
+- id: shipwreck_salvage
+  name: "<blue>\u2693 Shipwreck Salvage"
+  description: A general expedition task.
+  category: TREASURE
+  world-states: []
+  duration-seconds: 14322
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 100
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 4
+    chance: 50
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: spring_exploration
+  name: "<green>\U0001F338 Spring Exploration"
+  description: A spring exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - spring
+  duration-seconds: 7962
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 4
+    chance: 50
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: flower_picking
+  name: "<light_purple>\U0001F337 Spring Flower Gathering"
+  description: A spring exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - spring
+  duration-seconds: 11391
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: WHEAT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 75
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 16
+    chance: 100
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: cherry_grove_hike
+  name: "<light_purple>\U0001F338 Cherry Grove Hike"
+  description: A spring exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - spring
+  duration-seconds: 11070
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: REDSTONE
+    amount: 8
+    chance: 80
+- id: bee_hive_harvest
+  name: "<yellow>\U0001F41D Bee Hive Harvest"
+  description: A spring exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - spring
+  duration-seconds: 13264
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: EMERALD
+    amount: 32
+    chance: 100
+- id: spring_cleaning
+  name: "<white>\U0001F9F9 Spring Cleaning"
+  description: A spring exclusive activity.
+  category: COMBAT
+  world-states:
+  - spring
+  duration-seconds: 4781
+  costs:
+  - type: MONEY
+    amount: 5000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 100
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 16
+    chance: 80
+- id: meadow_picnic
+  name: "<green>\U0001F9FA Meadow Picnic"
+  description: A spring exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - spring
+  duration-seconds: 10485
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: BONE
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: EMERALD
+    amount: 4
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: butterfly_catching
+  name: "<light_purple>\U0001F98B Butterfly Catching"
+  description: A spring exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - spring
+  duration-seconds: 12872
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 75
+  - type: ITEM
+    material: EMERALD
+    amount: 16
+    chance: 100
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: rabbit_hunting
+  name: "<gold>\U0001F407 Rabbit Hunting"
+  description: A spring exclusive activity.
+  category: COMBAT
+  world-states:
+  - spring
+  duration-seconds: 11501
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 8
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: spring_fishing_derby
+  name: "<aqua>\U0001F3A3 Spring Fishing Derby"
+  description: A spring exclusive activity.
+  category: FISHING
+  world-states:
+  - spring
+  duration-seconds: 12892
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: REDSTONE
+    amount: 4
+    chance: 80
+- id: desert_treasure
+  name: "<yellow>\U0001F3DC Desert Treasure Hunt"
+  description: A summer exclusive activity.
+  category: TREASURE
+  world-states:
+  - summer
+  duration-seconds: 6753
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 4
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 40
+- id: coral_reef_dive
+  name: "<aqua>\U0001FAB8 Coral Reef Dive"
+  description: A summer exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - summer
+  duration-seconds: 13214
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 100
+  - type: ITEM
+    material: EMERALD
+    amount: 16
+    chance: 50
+- id: beach_combing
+  name: "<yellow>\U0001F41A Beach Combing"
+  description: A summer exclusive activity.
+  category: TREASURE
+  world-states:
+  - summer
+  duration-seconds: 10196
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 50
+  - type: ITEM
+    material: REDSTONE
+    amount: 16
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: summer_fishing_tourney
+  name: "<blue>\U0001F3A3 Summer Fishing Tourney"
+  description: A summer exclusive activity.
+  category: FISHING
+  world-states:
+  - summer
+  duration-seconds: 13486
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: ROTTEN_FLESH
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: DIAMOND
+    amount: 32
+    chance: 100
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 40
+- id: volcano_trek
+  name: "<dark_red>\U0001F30B Volcano Trek"
+  description: A summer exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - summer
+  duration-seconds: 12858
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: COAL
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 100
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 8
+    chance: 80
+- id: oasis_discovery
+  name: "<green>\U0001F334 Oasis Discovery"
+  description: A summer exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - summer
+  duration-seconds: 5594
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 75
+  - type: ITEM
+    material: DIAMOND
+    amount: 32
+    chance: 50
+- id: sunken_galleon
+  name: "<gold>\u2693 Sunken Galleon"
+  description: A summer exclusive activity.
+  category: TREASURE
+  world-states:
+  - summer
+  duration-seconds: 12329
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 100
+  - type: ITEM
+    material: DIAMOND
+    amount: 8
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: pirate_cove_raid
+  name: "<red>\U0001F3F4\u200D\u2620 Pirate Cove Raid"
+  description: A summer exclusive activity.
+  category: COMBAT
+  world-states:
+  - summer
+  duration-seconds: 11763
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: WHEAT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 75
+  - type: ITEM
+    material: DIAMOND
+    amount: 8
+    chance: 100
+- id: summer_camping
+  name: "<gold>\u26FA Summer Camping"
+  description: A summer exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - summer
+  duration-seconds: 4729
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: WHEAT
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 50
+  - type: ITEM
+    material: REDSTONE
+    amount: 8
+    chance: 50
+- id: harvest_festival
+  name: "<dark_orange>\U0001F342 Harvest Festival Run"
+  description: An autumn exclusive activity.
+  category: SEASONAL
+  world-states:
+  - autumn
+  duration-seconds: 7190
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 75
+  - type: ITEM
+    material: EMERALD
+    amount: 4
+    chance: 80
+- id: mushroom_foraging
+  name: "<dark_red>\U0001F344 Mushroom Foraging"
+  description: An autumn exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - autumn
+  duration-seconds: 11722
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: WHEAT
+    amount: 32
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 32
+    chance: 50
+- id: pumpkin_patch_defense
+  name: "<gold>\U0001F383 Pumpkin Patch Defense"
+  description: An autumn exclusive activity.
+  category: COMBAT
+  world-states:
+  - autumn
+  duration-seconds: 6060
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: BONE
+    amount: 8
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 100
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 16
+    chance: 100
+- id: autumn_leaf_peeping
+  name: "<red>\U0001F341 Autumn Leaf Peeping"
+  description: An autumn exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - autumn
+  duration-seconds: 13112
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: COAL
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: EMERALD
+    amount: 8
+    chance: 80
+- id: spooky_forest_walk
+  name: "<dark_gray>\U0001F47B Spooky Forest Walk"
+  description: An autumn exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - autumn
+  duration-seconds: 6051
+  costs:
+  - type: MONEY
+    amount: 500
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 100
+  - type: ITEM
+    material: REDSTONE
+    amount: 32
+    chance: 50
+- id: corn_maze_escape
+  name: "<yellow>\U0001F33D Corn Maze Escape"
+  description: An autumn exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - autumn
+  duration-seconds: 10783
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: WHEAT
+    amount: 8
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 100
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 32
+    chance: 100
+- id: turkey_hunt
+  name: "<gold>\U0001F983 Turkey Hunt"
+  description: An autumn exclusive activity.
+  category: COMBAT
+  world-states:
+  - autumn
+  duration-seconds: 10274
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: REDSTONE
+    amount: 16
+    chance: 50
+- id: apple_orchard_harvest
+  name: "<red>\U0001F34E Apple Orchard Harvest"
+  description: An autumn exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - autumn
+  duration-seconds: 4103
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: COAL
+    amount: 8
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 75
+  - type: ITEM
+    material: REDSTONE
+    amount: 8
+    chance: 50
+- id: graveyard_shift
+  name: "<gray>\U0001FAA6 Graveyard Shift"
+  description: An autumn exclusive activity.
+  category: COMBAT
+  world-states:
+  - autumn
+  duration-seconds: 12966
+  costs:
+  - type: MONEY
+    amount: 5000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 16
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 20
+- id: frozen_lake
+  name: "<aqua>\u2744 Frozen Lake Expedition"
+  description: A winter exclusive activity.
+  category: SEASONAL
+  world-states:
+  - winter
+  duration-seconds: 8711
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: EMERALD
+    amount: 16
+    chance: 100
+- id: ice_cave_spelunking
+  name: "<blue>\U0001F9CA Ice Cave Spelunking"
+  description: A winter exclusive activity.
+  category: MINING
+  world-states:
+  - winter
+  duration-seconds: 5084
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 16
+    chance: 100
+- id: yeti_hunt
+  name: "<white>\u2744 Yeti Hunt"
+  description: A winter exclusive activity.
+  category: COMBAT
+  world-states:
+  - winter
+  duration-seconds: 9993
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: EMERALD
+    amount: 16
+    chance: 100
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: polar_bear_rescue
+  name: "<white>\U0001F43B\u200D\u2744 Polar Bear Rescue"
+  description: A winter exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - winter
+  duration-seconds: 11950
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: ROTTEN_FLESH
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 32
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 20
+- id: glacier_climb
+  name: "<aqua>\U0001F3D4 Glacier Climb"
+  description: A winter exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - winter
+  duration-seconds: 12744
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 50
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 4
+    chance: 50
+- id: snow_fort_siege
+  name: "<gray>\U0001F3F0 Snow Fort Siege"
+  description: A winter exclusive activity.
+  category: COMBAT
+  world-states:
+  - winter
+  duration-seconds: 7724
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: EMERALD
+    amount: 32
+    chance: 100
+- id: ice_fishing_contest
+  name: "<blue>\U0001F3A3 Ice Fishing Contest"
+  description: A winter exclusive activity.
+  category: FISHING
+  world-states:
+  - winter
+  duration-seconds: 8533
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 75
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 4
+    chance: 50
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: aurora_borealis_watch
+  name: "<light_purple>\U0001F30C Aurora Borealis Watch"
+  description: A winter exclusive activity.
+  category: EXPLORATION
+  world-states:
+  - winter
+  duration-seconds: 7089
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 800
+    chance: 50
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 32
+    chance: 50
+- id: santa_workshop_raid
+  name: "<red>\U0001F381 Santa's Workshop Raid"
+  description: A winter exclusive activity.
+  category: TREASURE
+  world-states:
+  - winter
+  duration-seconds: 7659
+  costs:
+  - type: MONEY
+    amount: 500
+  - type: ITEM
+    material: COAL
+    amount: 16
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 100
+  - type: ITEM
+    material: REDSTONE
+    amount: 32
+    chance: 80
+- id: ancient_crypt
+  name: "<dark_red>\U0001F480 Ancient Crypt"
+  description: A special world event activity.
+  category: COMBAT
+  world-states:
+  - blood_moon
+  duration-seconds: 10779
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 32
+    chance: 50
+- id: vampire_lair
+  name: "<red>\U0001F987 Vampire Lair"
+  description: A special world event activity.
+  category: COMBAT
+  world-states:
+  - blood_moon
+  duration-seconds: 4500
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 8
+    chance: 80
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 1
+    chance: 20
+- id: pirate_voyage
+  name: "<gold>\U0001F3F4\u200D\u2620 Pirate Voyage"
+  description: A special world event activity.
+  category: EVENT
+  world-states:
+  - treasure_hunt
+  duration-seconds: 10203
+  costs:
+  - type: MONEY
+    amount: 1500
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 50
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 32
+    chance: 80
+- id: treasure_island
+  name: "<yellow>\U0001F3DD Treasure Island"
+  description: A special world event activity.
+  category: TREASURE
+  world-states:
+  - treasure_hunt
+  duration-seconds: 6139
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 75
+  - type: ITEM
+    material: EMERALD
+    amount: 8
+    chance: 50
+- id: meteorite_salvage
+  name: "<dark_purple>\u2604 Meteorite Salvage"
+  description: A special world event activity.
+  category: EVENT
+  world-states:
+  - meteor_shower
+  duration-seconds: 5660
+  costs:
+  - type: MONEY
+    amount: 1000
+  - type: ITEM
+    material: ROTTEN_FLESH
+    amount: 8
+  rewards:
+  - type: MONEY
+    amount: 3000
+    chance: 50
+  - type: ITEM
+    material: IRON_INGOT
+    amount: 32
+    chance: 50
+- id: alien_crash_site
+  name: "<green>\U0001F6F8 Alien Crash Site"
+  description: A special world event activity.
+  category: EVENT
+  world-states:
+  - meteor_shower
+  duration-seconds: 9957
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 50
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 32
+    chance: 80
+- id: dragon_invasion
+  name: "<dark_purple>\U0001F409 Dragon Invasion"
+  description: A special world event activity.
+  category: COMBAT
+  world-states:
+  - dragon_attack
+  duration-seconds: 10342
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 32
+    chance: 50
+- id: goblin_raid_defense
+  name: "<green>\U0001F47A Goblin Raid Defense"
+  description: A special world event activity.
+  category: COMBAT
+  world-states:
+  - goblin_raid
+  duration-seconds: 8064
+  costs:
+  - type: MONEY
+    amount: 2000
+  rewards:
+  - type: MONEY
+    amount: 6000
+    chance: 100
+  - type: ITEM
+    material: GOLD_INGOT
+    amount: 8
+    chance: 50
+  - type: CRATE_KEY
+    crate: random_crate
+    amount: 2
+    chance: 40
+- id: celestial_convergence
+  name: "<aqua>\u2728 Celestial Convergence"
+  description: A special world event activity.
+  category: EVENT
+  world-states:
+  - celestial_event
+  duration-seconds: 6707
+  costs:
+  - type: MONEY
+    amount: 1000
+  rewards:
+  - type: MONEY
+    amount: 1500
+    chance: 75
+  - type: ITEM
+    material: LAPIS_LAZULI
+    amount: 4
+    chance: 100

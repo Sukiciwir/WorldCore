@@ -11,6 +11,7 @@ dev\worldcore\gui\util\GuiUtil.class
 dev\worldcore\gui\util\GUIListener.class
 dev\worldcore\commands\ExpeditionCommand.class
 dev\worldcore\market\MarketTrendManager.class
+dev\worldcore\gui\ExpeditionsGUI$1.class
 dev\worldcore\economy\hooks\VaultEconomyHook.class
 dev\worldcore\hooks\CrazyCratesHook.class
 dev\worldcore\title\hooks\LuckPermsHook.class

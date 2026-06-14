@@ -30,6 +30,11 @@ public final class MainConfig {
     private int     defaultExpeditionSlots = 1;
     private int     expeditionCheckTicks   = 600;
 
+    private boolean dailyRotationEnabled   = true;
+    private int     dailyGeneralCount      = 4;
+    private int     dailySeasonalCount     = 2;
+    private int     dailyEventCount        = 1;
+
     // Achievements
     private boolean achievementsEnabled   = true;
     private boolean broadcastUnlock       = true;
@@ -66,6 +71,11 @@ public final class MainConfig {
         defaultExpeditionSlots = cfg.getInt("expeditions.default-slots", 1);
         expeditionCheckTicks   = cfg.getInt("expeditions.check-interval-ticks", 600);
 
+        dailyRotationEnabled   = cfg.getBoolean("expeditions.daily-rotation.enabled", true);
+        dailyGeneralCount      = cfg.getInt("expeditions.daily-rotation.pool-composition.general", 4);
+        dailySeasonalCount     = cfg.getInt("expeditions.daily-rotation.pool-composition.seasonal", 2);
+        dailyEventCount        = cfg.getInt("expeditions.daily-rotation.pool-composition.event", 1);
+
         achievementsEnabled = cfg.getBoolean("achievements.enabled", true);
         broadcastUnlock     = cfg.getBoolean("achievements.broadcast-unlock", true);
 
@@ -97,6 +107,12 @@ public final class MainConfig {
     public boolean          isExpeditionsEnabled()      { return expeditionsEnabled; }
     public int              getDefaultExpeditionSlots() { return defaultExpeditionSlots; }
     public int              getExpeditionCheckTicks()   { return expeditionCheckTicks; }
+    
+    public boolean          isDailyRotationEnabled()    { return dailyRotationEnabled; }
+    public int              getDailyGeneralCount()      { return dailyGeneralCount; }
+    public int              getDailySeasonalCount()     { return dailySeasonalCount; }
+    public int              getDailyEventCount()        { return dailyEventCount; }
+
     public boolean          isAchievementsEnabled()     { return achievementsEnabled; }
     public boolean          isBroadcastUnlock()         { return broadcastUnlock; }
     public boolean          isTitlesEnabled()           { return titlesEnabled; }

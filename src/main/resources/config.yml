@@ -79,6 +79,14 @@ expeditions:
   # Check interval for completed expeditions (ticks)
   check-interval-ticks: 600
 
+  # Daily Rotating Pool (Daily Quests)
+  daily-rotation:
+    enabled: true
+    pool-composition:
+      general: 4
+      seasonal: 2
+      event: 1
+
 # ─── Achievement System ────────────────────────────────────────────────────────
 achievements:
   enabled: true
