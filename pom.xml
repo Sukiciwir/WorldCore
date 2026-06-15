@@ -6,7 +6,7 @@
 
     <groupId>dev.worldcore</groupId>
     <artifactId>WorldCore</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <name>WorldCore</name>
@@ -129,8 +129,7 @@
             <groupId>com.worldevents</groupId>
             <artifactId>WorldEvents</artifactId>
             <version>1.8.6</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/../WorldEvents-1.8.6.jar</systemPath>
+            <scope>provided</scope>
             <optional>true</optional>
         </dependency>
 
@@ -142,8 +141,7 @@
             <groupId>Kinkin.aeternum</groupId>
             <artifactId>AeternumSeasons</artifactId>
             <version>4.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/../AeternumSeasons-4.1.jar</systemPath>
+            <scope>provided</scope>
             <optional>true</optional>
         </dependency>
 
@@ -154,9 +152,8 @@
         <dependency>
             <groupId>dev.discoverycore</groupId>
             <artifactId>DiscoveryCore</artifactId>
-            <version>1.0.2</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/../DiscoveryCore/target/DiscoveryCore-1.0.2.jar</systemPath>
+            <version>1.0.4</version>
+            <scope>provided</scope>
             <optional>true</optional>
         </dependency>
 
