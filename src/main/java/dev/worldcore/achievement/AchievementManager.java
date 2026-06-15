@@ -109,7 +109,7 @@ public final class AchievementManager {
     public void loadPlayer(@NotNull UUID uuid) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             Map<String, StorageBackend.AchievementProgressRow> rows = storage.loadAchievements(uuid);
-            Map<String, AchievementProgress> progress = new HashMap<>();
+            Map<String, AchievementProgress> progress = new ConcurrentHashMap<>();
             for (StorageBackend.AchievementProgressRow row : rows.values()) {
                 progress.put(row.achievementId(), new AchievementProgress(
                         row.achievementId(), row.progress(), row.unlocked(), row.unlockedAt()));
